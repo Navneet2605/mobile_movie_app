@@ -1,4 +1,3 @@
-// track the searches made by the use
 import { Client, Databases, ID, Query } from "react-native-appwrite";
 
 const DATABASE_ID = process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID!;
@@ -10,37 +9,49 @@ const client = new Client()
 
 const database = new Databases(client);
 
+export const updateSearchCount = async (query: string, movie: Movie) => {
+  try {
+    const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID, [
+      Query.equal("searchTerm", query),
+    ]);
 
-export const updateSearchCount = async(query:string,movie: Movie ) =>{
-    try{
-
-   
-    const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID,[
-        Query.equal('searchTerm',query)
-    ])
-console.log(result);
-if(result.documents.length > 0){
-    const existingmovie = result.documents[0];
-
-    await database.updateDocument(
-        DATABASE_ID , 
+    if (result.documents.length > 0) {
+      const existingMovie = result.documents[0];
+      await database.updateDocument(
+        DATABASE_ID,
         COLLECTION_ID,
-        existingmovie.$id,
+        existingMovie.$id,
         {
-            count: existingmovie.count +1 
+          count: existingMovie.count + 1,
         }
-    )
-}else{
-    await database.createDocument(DATABASE_ID, COLLECTION_ID,ID.unique(),{
+      );
+    } else {
+      await database.createDocument(DATABASE_ID, COLLECTION_ID, ID.unique(), {
         searchTerm: query,
-        movie_id:  movie.id,
+        movie_id: movie.id,
+        title: movie.title,
         count: 1,
-        title:movie.title,
-        poster_url: `https://images.tmdb.org/t/p/w500${movie.poster_path}`
-    })
-}
-    }catch(error){
-console.log(error);
-throw error;
+        poster_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+      });
     }
-}
+  } catch (error) {
+    console.error("Error updating search count:", error);
+    throw error;
+  }
+};
+
+export const getTrendingMovies = async (): Promise<
+  TrendingMovie[] | undefined
+> => {
+  try {
+    const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID, [
+      Query.limit(5),
+      Query.orderDesc("count"),
+    ]);
+
+    return result.documents as unknown as TrendingMovie[];
+  } catch (error) {
+    console.error(error);
+    return undefined;
+  }
+};
