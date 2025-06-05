@@ -24,14 +24,16 @@ const [searchQuery,setSearchQuery] = useState('');
   } = useFetch(() => fetchMovies({ query: searchQuery }), false)
 
   useEffect(()=>{
-    const func = async ()=>{
+    const timeoutId =setTimeout(
+      async ()=>{
       if(searchQuery.trim()){
         await loadMovies();
       }else{
         reset();
       }
-      }
-      func();
+      },500) ;
+  
+      return ()=> clearTimeout(timeoutId);
   },[searchQuery]);
 
   return (
@@ -69,8 +71,6 @@ const [searchQuery,setSearchQuery] = useState('');
             Error: {error.message}
           </Text>
         )}
-
-
         {!loading && !error && searchQuery.trim() && movies?.length > 0 &&(
           <Text className="text-xl text-white font-bold">
             Search Result for{' '}
@@ -78,6 +78,15 @@ const [searchQuery,setSearchQuery] = useState('');
           </Text>
         )}
         </>
+      }
+      ListEmptyComponent={
+        !loading && !error ? (
+          <View className="mt-10 px-5">
+            <Text className="text-center text-gray-500">
+                {searchQuery.trim()?'NO Movies Found' : 'Search for a Movie'}
+            </Text>
+          </View>
+        ): null
       }
       />
     </View>
