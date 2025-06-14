@@ -16,7 +16,6 @@ A React Native mobile application built with Expo that allows users to browse, s
 
 ### State Management & Data
 - **Appwrite** - Backend-as-a-Service for user authentication and data storage
-- **Custom API Service** - RESTful API integration for movie data
 - **Custom Hooks** - Reusable data fetching logic with useFetch
 
 ### Development Tools
