@@ -4,14 +4,29 @@ A React Native mobile application for browsing and discovering movies with a mod
 
 ## Screenshots
 
-### Home Screen
-![Home Screen](assets/images/homescreen.png)
-
-### Search Screen
-![Search Screen](assets/images/search.png)
-
-### Movie Details Page
-![Movie Details Page](assets/images/moviepage.png)
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="assets/images/homescreen.png" alt="Home Screen" width="300"/>
+        <br/>
+        <b>Home Screen</b>
+      </td>
+      <td align="center">
+        <img src="assets/images/search.png" alt="Search Screen" width="300"/>
+        <br/>
+        <b>Search Screen</b>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2">
+        <img src="assets/images/moviepage.png" alt="Movie Details Page" width="300"/>
+        <br/>
+        <b>Movie Details Page</b>
+      </td>
+    </tr>
+  </table>
+</div>
 
 ## Features
 
@@ -56,73 +71,32 @@ npm install
 npx expo start
 
 
-5. **Run on device/simulator**
-   - **iOS Simulator**: Press `i` in the terminal
-   - **Android Emulator**: Press `a` in the terminal
-   - **Physical Device**: Scan QR code with Expo Go app
+4. Run on your preferred platform
+- Press `i` for iOS simulator
+- Press `a` for Android emulator
+- Scan QR code with Expo Go app on your device
 
-### Additional Commands
-- **Type checking**: `npx tsc --noEmit`
-- **Linting**: `npx eslint .`
-- **Build for production**: `npx expo build`
+## Project Structure
 
-## Usability Heuristics Focused On
 
-### 1. Visibility of System Status
-- **Loading States**: Clear loading indicators during data fetching
-- **Search Feedback**: Real-time search results and empty state handling
-- **Navigation Indicators**: Active tab highlighting in bottom navigation
+mobile_movie_app/
+├── app/                    # App screens and navigation
+├── components/             # Reusable UI components
+├── services/              # API and backend services
+├── constants/             # App constants and configurations
+├── assets/                # Images, fonts, and other assets
+├── interfaces/            # TypeScript interfaces
+└── types/                 # Type definitions
 
-### 2. Match Between System and Real World
-- **Familiar Icons**: Intuitive icons for search, profile, and saved items
-- **Movie Metaphors**: Card-based layout mimicking physical movie posters
-- **Natural Language**: Clear, conversational error messages and labels
 
-### 3. User Control and Freedom
-- **Easy Navigation**: Bottom tab navigation for quick access to main sections
-- **Search Control**: Ability to clear search and start over
-- **Save/Unsave**: Easy toggle for adding/removing movies from saved list
+## Contributing
 
-### 4. Consistency and Standards
-- **Design System**: Consistent spacing, typography, and color scheme throughout
-- **Interaction Patterns**: Uniform touch targets and gesture responses
-- **Component Reusability**: Standardized MovieCard and TrendingCard components
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### 5. Error Prevention
-- **Input Validation**: Search input handling to prevent empty or invalid queries
-- **Network Error Handling**: Graceful degradation when API calls fail
-- **Type Safety**: TypeScript implementation to prevent runtime errors
+## License
 
-### 6. Recognition Rather Than Recall
-- **Visual Cues**: Movie posters and titles for easy recognition
-- **Persistent Navigation**: Always-visible bottom tabs for orientation
-- **Search History**: Contextual search suggestions and recent searches
-
-### 7. Flexibility and Efficiency of Use
-- **Quick Actions**: Swipe gestures and touch interactions for power users
-- **Multiple Access Paths**: Various ways to discover movies (trending, search, saved)
-- **Responsive Design**: Optimized for different screen sizes and orientations
-
-### 8. Aesthetic and Minimalist Design
-- **Clean Interface**: Focused content presentation without clutter
-- **Purposeful Elements**: Every UI element serves a specific function
-- **Visual Hierarchy**: Clear information architecture with proper spacing
-
-### 9. Help Users Recognize, Diagnose, and Recover from Errors
-- **Clear Error Messages**: Descriptive error states with actionable solutions
-- **Network Status**: Offline/online state awareness
-- **Retry Mechanisms**: Easy ways to retry failed operations
-
-### 10. Help and Documentation
-- **Intuitive Interface**: Self-explanatory UI reducing need for external help
-- **Contextual Guidance**: In-app hints and empty state instructions
-- **Consistent Patterns**: Familiar interaction patterns reducing learning curve
-
-## Features
-
-- **Movie Discovery**: Browse trending movies with horizontal scrolling
-- **Search Functionality**: Find movies by title with real-time results
-- **Personal Watchlist**: Save and manage favorite movies
-- **Detailed Movie Views**: Comprehensive movie information and metadata
-- **Responsive Design**: Optimized for various mobile screen sizes
-- **Offline Support**: Cached data for improved performance
+This project is licensed under the MIT License - see the LICENSE file for details.
